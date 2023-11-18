@@ -18,9 +18,27 @@ void inserir(int id, lista **prod){
 	(*prod) = novoproduto;
 }
 
+void ordenar(lista **prod){
+    lista *aux = *prod, *t;
+    char s[32];
+    while(aux != NULL){
+      t = aux->prox;
+      while(t != NULL){
+        if(strcmp(aux->produto, t->produto) > 0){
+            strcpy(s, aux->produto);
+            strcpy(aux->produto, t->produto);
+            strcpy(t->produto, s);
+        }
+        t = t->prox;
+      }
+      aux = aux->prox;
+    }
+}
+
 void procurar(lista *prod){
 	clock_t t;
 	char nomeProd[32];
+	int p=0;
 	printf("Digite o nome do produto que deseja procurar: ");
 	scanf("%s", nomeProd);
 	t=clock();
@@ -29,11 +47,15 @@ void procurar(lista *prod){
 			printf("\nProduto encontrado!\n");
 			printf("Produto: %s\n",(*prod).produto);
 			printf("ID: %i\n",(*prod).id);
+			p=1;
 		}
 		prod = (*prod).prox;
 	}
+	if(p==0){
+		printf("\nProduto nao encontrado\n");
+	}
 	t=clock()-t;
-	printf("Tempo de execucao de busca: %.1lfms", ((double)t)/((CLOCKS_PER_SEC/1000)));
+	printf("Tempo de execucao de busca: %.1lf ms", ((double)t)/((CLOCKS_PER_SEC/1000)));
 }
 
 void imprimir(lista *prod){
@@ -51,8 +73,9 @@ int main(){
 	produtos = NULL;
 	do{
 		inserir(reg,&produtos);
+		ordenar(&produtos);
 		imprimir(produtos);
-		printf("\nAdicionar produto? (1-sim;2-nao)\n");
+		printf("\nAdicionar novo produto? (1-sim;2-nao)\n");
 		scanf("%i",&resp);
 		reg++;
 	}while(resp==1);
