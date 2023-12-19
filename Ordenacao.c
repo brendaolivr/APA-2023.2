@@ -72,8 +72,8 @@ void insertion(char time[][40], int pontos[]){
     }
 }
 
-void selection (int pontos[], int n){
-    int i, j, min, x;
+void selection (int pontos[], int n, char time[][40]){
+    int i, j, min, x,dec=19;
     for (i=1; i<=n-1; i++){
         min = i;
 	    for (j=i+1; j<=n; j++){
@@ -86,7 +86,8 @@ void selection (int pontos[], int n){
     }
     printf("\nConjunto ordenado por selecao: \n");
 	for(i=0;i<=19;i++){
-		printf("\n%i\n",pontos[i]);
+		printf("\n%i | %s\n",pontos[i],time[dec]);
+		dec--;
     }
 }
 
@@ -129,5 +130,5 @@ int main(){
 	printf("----------------------------------");
 	insertion(times,pontos);
 	printf("----------------------------------");
-	selection(pontos,20);
+	selection(pontos,20,times);
 }
