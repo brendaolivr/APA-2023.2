@@ -72,7 +72,7 @@ void bubblesort(char time[][40], int pontos[]){
     }
 }
 
-void selection (int pontos[], int n, char time[][40]){
+void selection(int pontos[], int n, char time[][40]){
     int i, j, min, x,dec=19;
     for (i=1; i<=n-1; i++){
         min = i;
@@ -91,6 +91,25 @@ void selection (int pontos[], int n, char time[][40]){
     }
 }
 
+void insertion(int pontos[],int n,char time[][40]){
+ 	int i=0,j=1,aux=0,dec;
+	 while (j < n){
+	 	aux = pontos[j];
+        i = j - 1;
+        while ((i >= 0) && (pontos[i] > aux)){
+        	pontos[i + 1] = pontos[i];
+            i = i - 1;
+        }
+        pontos[i + 1] = aux;
+        j = j + 1;
+    }
+    printf("\nConjunto ordenado por insercao: \n");
+	for(i=0;i<=19;i++){
+		printf("\n%i | %s\n",pontos[i],time[dec]);
+		dec--;
+    }
+ }
+ 
 int main(){
     int pontos[20] = {63,63,62,60,59,59,53,52,48,47,46,45,44,44,43,42,41,35,29,21},i;
     char times[20][40] = {
@@ -131,4 +150,6 @@ int main(){
 	bubblesort(times,pontos);
 	printf("----------------------------------");
 	selection(pontos,20,times);
+	printf("----------------------------------");
+	insertion(pontos,19,times);
 }
