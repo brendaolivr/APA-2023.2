@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-
 void criptografar(char c[]){
   char *chave = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   char N0[5]="48",N1[5]="49",N2[5]="50",N3[5]="51",N4[5]="52",N5[5]="53",N6[5]="54",N7[5]="55",N8[5]="56",N9[5]="57",
@@ -128,7 +127,9 @@ void criptografar(char c[]){
 }
 int main(){
     char cod[32];
-    printf("\nDigite um codigo: ");
-    scanf("%s", cod);
-    criptografar(cod);
+    do{
+    	printf("\nDigite uma senha para criptografar ou * para sair: ");
+        scanf("%s", cod);
+        criptografar(cod);
+	}while(strcmp(cod, "*")!= 0);
 }
