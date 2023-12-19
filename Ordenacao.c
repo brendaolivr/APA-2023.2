@@ -47,7 +47,7 @@ void difPontos2(int pontos[],int i, int i2){
 	}
 }
 
-void insertion(char time[][40], int pontos[]){
+void bubblesort(char time[][40], int pontos[]){
 	int i,troca,c,aux,dec=19;
 	printf("\nOrdenando a lista:\n");
 	for(i=0;i<=19;i++){
@@ -65,7 +65,7 @@ void insertion(char time[][40], int pontos[]){
 		    }
 	    }
 	}while(troca==1);
-	printf("\nConjunto ordenado por insercao: \n");
+	printf("\nConjunto ordenado por bubble sort: \n");
 	for(i=0;i<=19;i++){
 		printf("\n%i | %s\n",pontos[i],time[dec]);
 		dec--;
@@ -128,7 +128,7 @@ int main(){
 	printf("\nMetade da Tabela Brasileirao Serie A\n");
 	mostraMetade(times,pontos,0,9);
 	printf("----------------------------------");
-	insertion(times,pontos);
+	bubblesort(times,pontos);
 	printf("----------------------------------");
 	selection(pontos,20,times);
 }
