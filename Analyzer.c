@@ -1,18 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
+#define TAM 10000
 int main(){
     int qtd_void=0,qtd_int=0,qtd_float=0,qtd_double=0,qtd_char=0,qtd_if=0,
     qtd_else=0,qtd_case=0,qtd_printf=0,qtd_scanf=0,qtd_funcao=0,qtd_for=0,
     qtd_while=0,qtd_do=0,soma=0;
+    clock_t t;
     char linha[1000];
     FILE *arq;
-    arq = fopen("complexidade.c","r");
+    arq = fopen("complexidade.c","r"); 
     if(arq==NULL){
         printf("\nNao foi possivel abrir o arquivo\n");
         exit(1);
     }else{
+    	t = clock();
     	while(fgets(linha,1000,arq)!= NULL){
           printf("%s",linha);
           if(strstr(linha,"void")!=NULL){
@@ -45,9 +49,11 @@ int main(){
             qtd_do++;
           }
        }
+       t = clock() - t;
 	}
     soma = qtd_void + qtd_int + qtd_float + qtd_double + qtd_char + qtd_if + qtd_else + qtd_case + qtd_printf + qtd_scanf + qtd_funcao + qtd_for + qtd_while + qtd_do;
     
 	printf("\nQuantidade total de passos: %i\n",soma);
+	printf("Tempo de execucao: %.1lf ms", ((double)t)/((CLOCKS_PER_SEC/1000)));
     fclose(arq);
 }
